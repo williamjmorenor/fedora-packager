@@ -13,7 +13,7 @@ RUN dnf install -y --refresh \
      && dnf clean all
 
 # Create a user to not run packaging taks as root
-RUN useradd -G mock wheel -ms -N /bin/bash packager
+RUN useradd -G mock wheel -ms /bin/bash packager
 # Let become the packager user root, you need to install build dependencies.
 RUN cat "packager ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers
 # Define user and home for packaging.

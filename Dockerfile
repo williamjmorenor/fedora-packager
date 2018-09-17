@@ -18,7 +18,7 @@ RUN useradd -ms /bin/bash packager
 # Packager user must be in mock package
 RUN usermod -a -G mock packager
 # Let become the packager user root, you need to install build dependencies.
-RUN cat "packager ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers
+RUN usermod -a -G wheel packager
 # Define user and home for packaging.
 USER packager
 WORKDIR /home/packager

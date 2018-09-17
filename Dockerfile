@@ -12,8 +12,11 @@ RUN dnf install -y --refresh \
      && dnf groupinstall -y "Development Tools" \
      && dnf clean all
 
+
 # Create a user to not run packaging taks as root
-RUN useradd -G mock wheel -ms /bin/bash packager
+RUN useradd -ms /bin/bash packager
+# Packager user must be in mock package
+RUN usermod -a -G mock packager
 # Let become the packager user root, you need to install build dependencies.
 RUN cat "packager ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers
 # Define user and home for packaging.

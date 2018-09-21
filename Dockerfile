@@ -9,6 +9,7 @@ RUN dnf install -y --refresh \
      mock \
      sudo \
      rpmlint \
+     wget \
      && dnf groupinstall -y "Development Tools" \
      && dnf clean all
 

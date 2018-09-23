@@ -20,8 +20,10 @@ RUN useradd -ms /bin/bash packager
 RUN usermod -a -G mock packager
 # Let become the packager user root, you need to install build dependencies.
 RUN usermod -a -G wheel packager
+# Use sudo without password.
+RUN echo "packager ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # Define user and home for packaging.
-# USER packager
+USER packager
 WORKDIR /home/packager
 VOLUME /home/packager
 ENTRYPOINT [ "/usr/bin/bash" ]

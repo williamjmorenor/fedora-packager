@@ -22,7 +22,7 @@ Create a directory to store your packager files outside the container:
 Create a container with the name "rpm-packaging" mount "$HOME/rpm-packaging" as a volume to the container and start a interactive shell:
 
 ```bash
-  docker run --privileged --name rpm-packaging -v $HOME/rpm-packaging:/home/packager:rw -ti williamjmorenor/fedora-packager
+  docker run --cap-add=SYS_ADMIN --privileged --name rpm-packaging -v $HOME/rpm-packaging:/home/packager:rw -ti williamjmorenor/fedora-packager
   bash-4.4$ pwd
   /home/packager
   bash-4.4$ whoami
@@ -41,6 +41,10 @@ Create a container with the name "rpm-packaging" mount "$HOME/rpm-packaging" as 
   bash-4.4$ exit
   exit
 ```
+
+Note: If you are on a ubuntu host mock will fail due to apparmor, see: 
+
+ - https://github.com/rpm-software-management/mock/issues/217
 
 ## Reuse the docker container.
 

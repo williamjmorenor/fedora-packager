@@ -10,7 +10,6 @@ RUN dnf install -y --refresh \
      sudo \
      rpmlint \
      wget \
-     && dnf groupinstall -y "Development Tools" \
      && dnf clean all
 
 # Create a user to not run packaging tasks as root

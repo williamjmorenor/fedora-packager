@@ -13,12 +13,11 @@ RUN dnf install -y --refresh \
      && dnf groupinstall -y "Development Tools" \
      && dnf clean all
 
-
-# Create a user to not run packaging taks as root
+# Create a user to not run packaging tasks as root
 RUN useradd -ms /bin/bash packager
-# Packager user must be in mock package
+# Packager user must be in the mock package
 RUN usermod -a -G mock packager
-# Let become the packager user root, you need to install build dependencies.
+# Let the packager user become root.
 RUN usermod -a -G wheel packager
 # Use sudo without password.
 RUN echo "packager ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers

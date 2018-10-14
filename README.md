@@ -1,5 +1,5 @@
 # fedora-packager
-Dockerfile to create a fedora packager setup inside a Container
+Dockerfile to create a fedora packager setup inside a Docker Container
 
 NOT READY FOR PRODUCTION - THIS IS A TESTING IMAGE
 
@@ -23,6 +23,10 @@ Create a container with the name "rpm-packaging" mount "$HOME/rpm-packaging" as 
 
 ```bash
   docker run --cap-add=SYS_ADMIN --privileged --name rpm-packaging -v $HOME/rpm-packaging:/home/packager:rw -ti williamjmorenor/fedora-packager
+```
+You can check the available rpm packaging stack with:
+
+  ```bash
   bash-4.4$ pwd
   /home/packager
   bash-4.4$ whoami
@@ -40,6 +44,7 @@ Create a container with the name "rpm-packaging" mount "$HOME/rpm-packaging" as 
   RPM version 4.14.2
   bash-4.4$ exit
   exit
+  
 ```
 
 Note: If you are on a ubuntu host mock will fail due to apparmor, see: 
@@ -68,6 +73,18 @@ Pull last image and recreate container:
 ```bash
   docker pull williamjmorenor/fedora-packager
   docker run --name rpm-packaging -v $HOME/rpm-packaging:/home/packager:rw -ti williamjmorenor/fedora-packager
+```
+
+To finish the sesion in the container just type:
+
+```bash
+  exit
+```
+
+To reuse the image run:
+
+```bash
+  docker start rpm-packaging -i
 ```
 
 # Using mock to build rpm packages.

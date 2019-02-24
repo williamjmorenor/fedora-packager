@@ -22,7 +22,7 @@ Create a directory to store your packager files outside the container:
 Create a container with the name "rpm-packaging" mount "$HOME/rpm-packaging" as a volume to the container and start a interactive shell:
 
 ```bash
-  docker run --cap-add=SYS_ADMIN --name rpm-packaging -v $HOME/rpm-packaging:/home/packager:rw -ti williamjmorenor/fedora-packager
+  docker run --privileged=true --cap-add=SYS_ADMIN --name rpm-packaging -v $HOME/rpm-packaging:/home/packager:rw -ti williamjmorenor/fedora-packager
 ```
 You can check the available rpm packaging stack with:
 

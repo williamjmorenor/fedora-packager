@@ -10,6 +10,10 @@ RUN dnf install -y --refresh \
      sudo \
      rpmlint \
      wget \
+     rpmdevtools \ 
+     deltarpm \
+     python3-pyrpm \
+     createrepo_c
      && dnf clean all
 
 # Create a user to not run packaging tasks as root
